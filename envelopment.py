@@ -40,9 +40,9 @@ class DEA(object):
         self.output_ = range(self.r)
 
         # result arrays
-        self.output_w = np.zeros((self.r, 1), dtype=np.float)  # output weights
-        self.input_w = np.zeros((self.m, 1), dtype=np.float)  # input weights
-        self.lambdas = np.zeros((self.n, 1), dtype=np.float)  # unit efficiencies
+        self.output_w = np.zeros((self.r, 1), dtype=np.float64)  # output weights
+        self.input_w = np.zeros((self.m, 1), dtype=np.float64)  # input weights
+        self.lambdas = np.zeros((self.n, 1), dtype=np.float64)  # unit efficiencies
         self.efficiency = np.zeros_like(self.lambdas)  # thetas
 
         # names
@@ -156,25 +156,64 @@ class DEA(object):
 
 if __name__ == "__main__":
     X = np.array([
-        [20., 300.],
-        [30., 200.],
-        [40., 100.],
-        [20., 200.],
-        [10., 400.]
-    ])
+       [ 21.1 ,   0.9 ,  13.6 ],
+       [ 26.8 ,   0.7 ,  22.5 ],
+       [ 65.6 ,   1.3 ,  53.9 ],
+       [ 19.4 ,   0.8 ,  14.1 ],
+       [ 30.4 ,   0.9 ,  18.7 ],
+       [ 61.6 ,   1.1 ,  28.1 ],
+       [ 21.8 ,   1.2 ,  22.5 ],
+       [ 20.9 ,   0.7 ,  14.4 ],
+       [ 29.4 ,   0.8 ,  25.6 ],
+       [164.5 ,   1.6 ,  55.9 ],
+       [ 15.5 ,   0.7 ,  16.5 ],
+       [ 20.6 ,   0.6 ,  22.  ],
+       [ 16.4 ,   1.  ,  20.2 ],
+       [ 18.8 ,   0.6 ,  20.6 ],
+       [ 17.56,   0.75,  18.  ],
+       [ 16.16,   0.65,  26.3 ],
+       [ 20.3 ,   0.7 ,  16.  ],
+       [ 15.97,   0.7 ,  15.7 ]
+       ])
     y = np.array([
-        [1000.],
-        [1000.],
-        [1000.],
-        [1000.],
-        [1000.]
-    ])
+       [  3.  ,   9.7 ,  27.9 ,  19.2 ,  15.7 ],
+       [  5.  , 104.1 ,  39.8 ,  23.5 ,  19.7 ],
+       [  1.7 , 143.7 , 174.9 , 144.3 ,  76.9 ],
+       [  3.7 ,  -2.  ,  17.  ,  16.3 ,  17.1 ],
+       [  3.  , 133.4 ,  77.9 ,  59.5 ,  41.8 ],
+       [  2.  , 149.6 ,  47.4 ,  37.1 , 108.3 ],
+       [ 14.  ,  12.7 ,  17.  ,  22.  ,  20.2 ],
+       [  2.9 ,  34.1 ,  20.4 ,  13.  ,  16.7 ],
+       [  1.4 ,  52.9 ,  58.2 ,  52.6 , 176.  ],
+       [  0.5 , 162.  ,  72.5 ,  96.2 , 148.7 ],
+       [  1.7 ,  40.8 ,  16.9 ,  11.2 ,  17.6 ],
+       [  1.  , -26.  ,   5.  ,   9.3 ,   8.7 ],
+       [ 13.  ,   8.1 ,  13.1 ,  11.  ,  16.2 ],
+       [  1.7 ,  44.9 ,   8.7 ,   3.2 ,  13.2 ],
+       [  4.21, -11.06,  21.48,  24.33,  16.39],
+       [  4.2 ,  11.31,  25.11,  19.97,   9.09],
+       [  2.82,  -0.64,  23.94,  15.98,  16.23],
+       [  2.61,  28.85,  13.22,   4.23,  11.99]
+       ])
     names = [
-        'Bratislava',
-        'Zilina',
-        'Kosice',
-        'Presov',
-        'Poprad'
+        'Exxon',
+        'British Telecom',
+        'Dell Computer',
+        'Mobil',
+        'AEGON Ins. Group',
+        'Vodafone Group ADR',
+        'Wells Fargo',
+        'Duke Energy',
+        'Safeway',
+        'America Online',
+        'Southern Company',
+        'Canon, Inc.',
+        "Gen'l Re Corp.",
+        'PG&E Corp.',
+        'British Petroleum',
+        'Honda Motor ADR',
+        'Texaco',
+        'Texas Utilities'
     ]
     dea = DEA(X,y)
     dea.name_units(names)
